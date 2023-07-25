@@ -1,0 +1,192 @@
+.header {
+  min-height: 100vh;
+  max-height: fit-content;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 90px;
+}
+
+.background {
+  background-color: #0891b2;
+  min-width: 1600px;
+  height: 800px;
+  transform: rotate(-10deg) translateY(-50%) translateX(-5%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.pic-about-container {
+  height: 500px;
+  width: 100%;
+  /* border: 2px solid red; */
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.profile-pic {
+  height: 100%;
+  width: 30%;
+  box-shadow: 1px 1px 10px #64748b;
+  position: absolute;
+  left: 0;
+}
+
+.about {
+  height: 80%;
+  width: 70%;
+  background-color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 10px #64748b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.about h1 {
+  font-size: 40px;
+  font-family: "Playfair Display";
+}
+
+.about p {
+  font-size: 22px;
+  font-family: Roboto;
+  color: #374151;
+}
+
+.about div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  font-size: 40px;
+}
+
+.about div a {
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 700px) {
+  .header {
+    min-height: 80vh;
+    padding: 0 30px;
+  }
+
+  .background {
+    min-width: 1400px;
+    height: 800px;
+  }
+
+  .pic-about-container {
+    height: 400px;
+    width: 100%;
+  }
+
+  .profile-pic {
+    height: 80%;
+    width: 30%;
+    left: 0;
+    top: 0;
+  }
+
+  .about {
+    justify-content: center;
+    gap: 0px;
+    padding: 15px;
+  }
+
+  .about h1 {
+    font-size: 35px;
+  }
+
+  .about p {
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  .about div {
+    font-size: 30px;
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 500px) {
+  .header {
+    padding: 0;
+  }
+
+  .background {
+    background-color: #0891b2;
+    min-width: 1000px;
+    transform: rotate(-50deg) translateY(-80%) translateX(-5%);
+  }
+
+  .pic-about-container {
+    height: 1250px;
+    width: 300px;
+    flex-direction: column;
+  }
+
+  .profile-pic {
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .about {
+    height: 50%;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .about h1 {
+    font-size: 30px;
+  }
+
+  .about p {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .about div {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+  }
+}
