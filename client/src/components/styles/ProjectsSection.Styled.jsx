@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FlexColumn } from "./Container.Styled";
 
 export const ProjectsSection = styled.section`
   min-height: 500px;
@@ -46,5 +47,14 @@ export const ProjectsSection = styled.section`
     & h2 {
       text-align: center;
     }
+  }
+`
+
+export const ProjectContainer = styled(FlexColumn)`
+  box-shadow: 1px 1px 10px #64748b;
+  transition: transform .3s ease;
+
+  &:hover {
+    transform: scale(0.98);
   }
 `

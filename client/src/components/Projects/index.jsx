@@ -1,20 +1,10 @@
-import { ProjectsSection } from "../styles/ProjectsSection.Styled";
+import { ProjectsSection, ProjectContainer } from "../styles/ProjectsSection.Styled";
 import { Image } from "../styles/Image.Styled";
 import {
   FlexRow,
   FlexColumn, 
   Grid 
 } from "../styles/Container.Styled";
-import styled from "styled-components";
-
-const ProjectContainer = styled(FlexColumn)`
-  box-shadow: 1px 1px 10px #64748b;
-  transition: transform .3s ease;
-
-  &:hover {
-    transform: scale(0.98);
-  }
-`
 
 export default function ProjectsContainer() {
   return (
@@ -32,7 +22,7 @@ export default function ProjectsContainer() {
   )
 }
 
-function Project() {
+export function Project() {
   return (
     <ProjectContainer>
       <Image height="60%" width="100%" />
