@@ -2,6 +2,7 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyles from './components/styles/Global'
 import Header from './components/Header/index'
 import ProjectsContainer from './components/Projects'
+import Contacts from './components/Contacts'
 import './App.css'
 
 const theme = {
@@ -21,6 +22,7 @@ function App() {
       <GlobalStyles />
       <Header />
       <ProjectsContainer />
+      <Contacts />
      </>
     </ThemeProvider>
   )

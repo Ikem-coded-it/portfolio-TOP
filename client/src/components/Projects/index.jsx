@@ -1,4 +1,5 @@
-import { ProjectsSection, Image } from "../styles/ProjectsSection.Styled";
+import { ProjectsSection } from "../styles/ProjectsSection.Styled";
+import { Image } from "../styles/Image.Styled";
 import {
   FlexRow,
   FlexColumn, 
@@ -36,9 +37,14 @@ function Project() {
     <ProjectContainer>
       <Image height="60%" width="100%" />
       <FlexColumn height="40%" width="100%" padding="15px">
-        <FlexRow width="100%" height="40px">
+        <FlexRow 
+          justify="space-between"
+          width="100%" 
+          height="40px">
           <h3>Project</h3>
-          <FlexRow gap="20px">
+          <FlexRow 
+            justify="space-between"
+            gap="20px">
             <a target="_blank">
               <i className="devicon-github-original colored"></i>
             </a>
@@ -47,7 +53,7 @@ function Project() {
             </a>
           </FlexRow>
         </FlexRow>
-        <p className="project-description">
+        <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse sint perspiciatis eveniet recusandae assumenda. Harum consequuntur.
         </p>
       </FlexColumn>

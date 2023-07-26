@@ -4,21 +4,23 @@ export const Container = styled.div`
   height: ${({ height }) => height};
   width: ${({ width }) => width};
   box-sizing: border-box;
-  border: 1px solid red;
 `
 
 export const FlexRow = styled(Container)`
   display: flex;
   gap: ${({ gap }) => gap};
-  justify-content: space-between;
-  align-items: center;
+  justify-content: ${({ justify }) => justify || "center"};
+  align-items: ${({ align }) => align || "center"};
+  padding: ${({ padding }) => padding};
 `
 
 export const FlexColumn = styled(Container)`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: ${({ padding }) => padding}
+  align-items: ${({ align }) => align || "flex-start"};
+  padding: ${({ padding }) => padding};
+  gap: ${({ gap }) => gap};
 `
 
 export const Grid = styled(Container)`

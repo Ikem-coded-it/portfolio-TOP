@@ -48,8 +48,3 @@ export const ProjectsSection = styled.section`
     }
   }
 `
-
-export const Image = styled.img`
-  height: ${props => props.height};
-  width: ${props => props.width};
-`
