@@ -1,4 +1,3 @@
-import profilePic from "../../assets/images/IMG_20230305_080744_514~4.jpg";
 import "./styles.css";
 
 export default function Header() {
@@ -6,11 +5,9 @@ export default function Header() {
     <header className="header">
       <div className="background"></div>
       <div className="pic-about-container">
-        <img 
-          src={profilePic}
-          alt="ikem"
-          className="profile-pic"
-        />
+        <div className="profile-pic">
+          <h2 className="my-name">Ikemefuna Onubogu</h2>
+        </div>
         <div className="about">
           <h1>About Me</h1>
           <p>

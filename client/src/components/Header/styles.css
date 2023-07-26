@@ -6,28 +6,42 @@
   justify-content: center;
   align-items: center;
   padding: 0 90px;
+  overflow: hidden;
+  position: relative;
 }
 
 .background {
-  background-color: #0891b2;
+  background-color: var(--bg-color);
   min-width: 1600px;
   height: 800px;
-  transform: rotate(-10deg) translateY(-50%) translateX(-5%);
-  position: fixed;
+  transform: rotate(-10deg) translateY(-40%) translateX(-5%);
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
 }
 
+@keyframes slide-down {
+  from {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .pic-about-container {
   height: 500px;
   width: 100%;
-  /* border: 2px solid red; */
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   position: relative;
+  animation: slide-down .5s ease-out;
 }
 
 .profile-pic {
@@ -36,10 +50,22 @@
   box-shadow: 1px 1px 10px #64748b;
   position: absolute;
   left: 0;
+  display: flex;
+  align-items: flex-end;
+  color: var(--font-light-dark);
+  font-size: 30px;
+  font-family: "Playfair Display";
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../../assets/images/IMG_20230305_080744_514~3.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
 .about {
-  height: 80%;
+  height: 87%;
   width: 70%;
   background-color: #fff;
   padding: 20px;
@@ -58,7 +84,7 @@
 .about p {
   font-size: 22px;
   font-family: Roboto;
-  color: #374151;
+  color: var(--font-dark-dark);
 }
 
 .about div {
@@ -86,7 +112,7 @@
 
 
 
-@media (max-width: 700px) {
+@media (max-width: 950px) {
   .header {
     min-height: 80vh;
     padding: 0 30px;
@@ -104,15 +130,24 @@
 
   .profile-pic {
     height: 80%;
-    width: 30%;
+    width: 35%;
     left: 0;
     top: 0;
+    font-size: 25px;
+  }
+
+  .profile-pic h2 {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    width: 500px;
   }
 
   .about {
     justify-content: center;
     gap: 0px;
     padding: 15px;
+    width: 65%;
   }
 
   .about h1 {
@@ -121,12 +156,11 @@
 
   .about p {
     font-size: 15px;
-    text-align: justify;
   }
 
   .about div {
     font-size: 30px;
-    display: none;
+    display: none; 
   }
 }
 
@@ -147,46 +181,56 @@
 @media (max-width: 500px) {
   .header {
     padding: 0;
+    padding-top: 50px;
+    min-width: 99.8vw;
+    max-width: 99.8vw;
   }
 
   .background {
-    background-color: #0891b2;
     min-width: 1000px;
-    transform: rotate(-50deg) translateY(-80%) translateX(-5%);
+    transform: rotate(-35deg) translateY(-80%) translateX(-5%);
   }
 
   .pic-about-container {
-    height: 1250px;
-    width: 300px;
+    min-height: 1000px;
+    max-height: fit-content;
+    width: 99.8vw;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .profile-pic {
-    height: 50%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
+    height: 470px;
+    width: 85%;
+    position: static;
+  }
+
+  .profile-pic h2 {
+    position: static;
+    width: fit-content;
   }
 
   .about {
-    height: 50%;
+    min-height: 400px;
+    max-height: 500px;
     width: 100%;
-    padding: 10px;
+    padding: 20px;
+    box-shadow: none;
   }
 
   .about h1 {
     font-size: 30px;
+    text-align: center;
   }
 
   .about p {
     font-size: 20px;
-    text-align: center;
   }
 
   .about div {
     display: flex;
     justify-content: center;
     font-size: 30px;
+    margin-top: 30px;
   }
 }
