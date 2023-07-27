@@ -40,7 +40,7 @@ const createProject = async (req, res) => {
 
 const getProjects = async(req, res) => {
   try {
-    const projects = await Project.find({}).lean();
+    const projects = await Project.find({}).sort({$natural: -1}).lean();
 
     if (!projects.length) {
       return res.status(404).json({

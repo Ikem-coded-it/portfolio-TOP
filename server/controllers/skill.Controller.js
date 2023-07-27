@@ -36,7 +36,7 @@ const createSkill = async(req, res) => {
 
 const getSkills = async(req, res) => {
   try{
-    const skills = await Skill.find({}).lean();
+    const skills = await Skill.find({}).sort({$natural: -1}).lean();
 
     if (!skills.length) {
       return res.status(404).json({

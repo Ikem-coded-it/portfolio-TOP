@@ -27,7 +27,7 @@ router.route("/create").post(checkSchema({
     errorMessage: "Code URL is required",
   },
 }),
-upload.single("picture"),
+upload.single("screenshot"),
 createProject);
 
 router.route("/").get(getProjects);

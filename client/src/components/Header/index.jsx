@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import "./styles.css";
 
 export default function Header() {
@@ -11,7 +12,7 @@ export default function Header() {
         <div className="about">
           <h1>About Me</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi delectus iusto perferendis voluptate eius nesciunt exercitationem velit placeat eum consequatur, sit architecto similique illum fugit quisquam magnam? Facere sapiente beatae nemo sed a nihil possimus cum error explicabo numquam est deserunt velit, veritatis impedit. Atque error vel fuga eius iste?
+            I am a passionate software developer with a love for crafting innovative projects using JavaScript. Embracing a constant quest for knowledge and growth, I find joy in exploring new concepts. Beyond coding, I indulge in reading captivating books, enjoying anime, and diving into YouTube's fascinating content in my leisure time.
           </p>
           <div className="link-icons-container">
             <a rel="noreferrer" target="_blank" href="https://github.com/ikem-coded-it">

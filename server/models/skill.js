@@ -6,7 +6,7 @@ const skillSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  icon: {
+  iconClassName: {
     type: String,
   },
 })

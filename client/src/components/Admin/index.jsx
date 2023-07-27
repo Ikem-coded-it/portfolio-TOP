@@ -182,6 +182,7 @@ export default function Admin() {
             context.projects.map((project) => {
               return <AdminProject 
                 key={project._id}
+                id={project._id}
                 title={project.title}
                 description={project.description}
                 liveURL={project.liveURL}
@@ -197,7 +198,28 @@ export default function Admin() {
   )
 }
 
-function AdminProject ({ title, description, liveURL, codeURL, screenshotURL}) {
+function AdminProject ({ id, title, description, liveURL, codeURL, screenshotURL}) {
+  const context = useContext(Context)
+
+  const handleDelete = async() => {
+    try {
+      const url = `${context.serverURL}/projects/delete/${id}`;
+      const response = await fetch(url, {method: 'DELETE'});
+      const data = await response.json();
+
+      if(data.success === true) {
+        context.setProjects(prev => {
+          return prev.filter(project => project._id !== id)
+        })
+        alert(data.message)
+      } else {
+        alert(data.message)
+      }
+    } catch (err) {
+      alert(err.message)
+    }
+  }
+
   return (
     <ProjectContainer width="300px" height="400px">
       <Image 
@@ -234,7 +256,11 @@ function AdminProject ({ title, description, liveURL, codeURL, screenshotURL}) {
         </p>
       </FlexColumn>
       <FlexRow justify="center" width="100%" height="fit-content">
-        <Button type="button">Delete</Button>
+        <Button 
+        type="button"
+        onClick={handleDelete}>
+          Delete
+        </Button>
       </FlexRow>
     </ProjectContainer>
   )
@@ -242,6 +268,7 @@ function AdminProject ({ title, description, liveURL, codeURL, screenshotURL}) {
 
 
 AdminProject.propTypes = {
+  id:  PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
   liveURL: PropTypes.string,

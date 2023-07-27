@@ -19,13 +19,11 @@ const projectSchema = new mongoose.Schema({
   liveURL: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   codeURL: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   technologies: {
