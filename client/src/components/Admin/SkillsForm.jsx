@@ -1,13 +1,14 @@
 import { UploadForm } from "../styles/Form.Styled"
 import { FlexColumn, FlexRow } from "../styles/Container.Styled"
 import { Button } from "../styles/Button.Styled"
+import PropTypes from "prop-types";
 
-export default function SkillForm() {
+export default function SkillForm({ onSubmit }) {
   return (
-    <UploadForm>
+    <UploadForm onSubmit={e => onSubmit(e)}>
       <FlexColumn>
         <label htmlFor="icon">Icon</label>
-        <input type="text" name="icon" id="icon" />
+        <input type="text" name="icon_class_name" id="icon" />
       </FlexColumn>
       <FlexColumn>
         <label htmlFor="name">Name</label>
@@ -18,4 +19,8 @@ export default function SkillForm() {
       </FlexRow>
     </UploadForm>
   )
+}
+
+SkillForm.propTypes = {
+  onSubmit: PropTypes.func
 }

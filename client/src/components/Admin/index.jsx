@@ -1,11 +1,16 @@
 import { FlexColumn, FlexRow } from "../styles/Container.Styled"
-import { UploadForm } from "../styles/Form.Styled";
 import { Button } from "../styles/Button.Styled";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ProjectContainer } from "../styles/ProjectsSection.Styled";
 import { Image } from "../styles/Image.Styled";
+import ProjectForm from "./ProjectForm";
 import SkillForm from "./SkillsForm";
+import { Skill } from "../Skills";
+import { Context } from "../../ContextProvider/context";
+import { useContext } from "react";
+import LoaderSpinner from "../Loader";
+import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 const AdminSection = styled(FlexRow)`
@@ -23,90 +28,209 @@ const AdminSection = styled(FlexRow)`
 
 export default function Admin() {
   const [authorized, setAuthorized] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  // const [projects, setProjects] = useState([])
+  // const [skills, setSkills] = useState([])
   const params = useParams()
+  const context = useContext(Context);
+
   useEffect(() => {
     function checkPassword() {
       // eslint-disable-next-line no-undef
       if (params.password === import.meta.env.VITE_ADMIN_PASSWORD) {
         setAuthorized(true)
+        return true
       }
     }
-    checkPassword()
-  })
+
+    checkPassword();
+   
+  }, [params])
+
+  const handleProjectUpload = async(e) => {
+    e.preventDefault();
+    try {
+      setUploading(true)
+
+      const title = e.target.title.value
+      const description = e.target.description.value
+      const liveURL = e.target.live_url.value
+      const codeURL = e.target.code_url.value
+      const screenshot = e.target.screenshot.files[0]
+
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('liveURL', liveURL);
+      formData.append('codeURL', codeURL);
+      formData.append('screenshot', screenshot);
+
+      const url = `${context.serverURL}/projects/create`;
+  
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData,
+      })
+      const data = await response.json();
+      if (data.data) {
+        setUploading(false)
+        context.setProjects([data.data, ...context.projects])
+      }
+
+      if (data instanceof Error) {
+        alert(data.message)
+        setUploading(false)
+      }
+
+      e.target.title.value = '';
+      e.target.description.value = '';
+      e.target.live_url.value = '';
+      e.target.code_url.value = '';
+    } catch(err) {
+      alert(err.message)
+      setUploading(false)
+    }
+  }
+
+  const handleSkillUpload = async(e) => {
+    e.preventDefault();
+    try {
+      setUploading(true)
+
+      const newSkill = {
+        name: e.target.name.value,
+        iconClassName: e.target.icon_class_name.value
+      }
+      
+      const url = `${context.serverURL}/skills/create`
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(newSkill),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const data = await response.json()
+
+      
+      if(data.success === false) {
+        alert(data.message)
+        setUploading(false)
+      }
+
+      if (data.success === true) {
+        context.setSkills([...context.skills, data.data])
+        setUploading(false)
+      }
+
+      e.target.name.value = '';
+      e.target.icon_class_name.value = '';
+    } catch(err) {
+      alert(err.message)
+      setUploading(false)
+    }
+  }
 
   if(authorized === false) return <h1>You cannot go here bro</h1>
 
   return (
+    <>
+    {uploading === true && <LoaderSpinner /> }
+
     <AdminSection 
       height="minmax(100vh, fit-content)"
       align="flex-start"
       justify="space-between"
       padding="40px 40px"
-      gap="20px">
-      <UploadForm>
-        <FlexColumn width="100%" gap="10px">
-          <label htmlFor="title">Project Title</label>
-          <input type="text" id="title" name="title"/>
-        </FlexColumn>
-        <FlexColumn width="100%" gap="10px">
-          <label htmlFor="description">Project Description</label>
-          <textarea id="description" name="description"></textarea>
-        </FlexColumn>
-        <FlexColumn width="100%" gap="10px">
-          <label htmlFor="live_url">Live URL</label>
-          <input type="url" id="live_url" name="live_url"/>
-        </FlexColumn>
-        <FlexColumn width="100%" gap="10px">
-          <label htmlFor="code_url">Code URL</label>
-          <input type="url" id="code_url" name="code_url"/>
-        </FlexColumn>
-         <FlexColumn width="100%" gap="10px">
-          <label htmlFor="screenshot_url">Screenshot URL</label>
-          <input type="url" id="screenshot_url" name="screenshot_url"/>
-        </FlexColumn>
-        <FlexRow width="100%" gap="10px">
-          <Button type="submit">Upload Project</Button>
-        </FlexRow>
-      </UploadForm>
-
-      <SkillForm />
+      gap="20px"
+      >
       
-      <FlexColumn 
-        gap="10px" 
-        justify="center"
-        >
-        <h1>Uploaded Projects</h1>
-        <AdminProject />
-        <AdminProject />
-        <AdminProject />
-      </FlexColumn>
+      <FlexRow>
+        <ProjectForm onSubmit={handleProjectUpload} />
+        <SkillForm onSubmit={handleSkillUpload} />
+      </FlexRow>
+      
+      <FlexRow 
+      align="flex-start"
+      gap="20px">
+        <FlexColumn 
+          gap="10px" 
+          columns="70px"
+          rows="70px"
+          >
+          <h1>Uploaded Skills</h1>
+          {
+            context.skills.length &&
+            context.skills.map((skill) => {
+              return <Skill
+                width="100px"
+                key={skill._id}
+                name={skill.name}
+                iconClassName={skill.iconClassName}
+              />
+            })
+          }
+        </FlexColumn>
+
+        <FlexColumn 
+          gap="10px" 
+          justify="center"
+          >
+          <h1>Uploaded Projects</h1>
+          {
+            context.projects.length &&
+            context.projects.map((project) => {
+              return <AdminProject 
+                key={project._id}
+                title={project.title}
+                description={project.description}
+                liveURL={project.liveURL}
+                codeURL={project.codeURL}
+                screenshotURL={project.screenshotURL}
+              />
+            })
+          }
+        </FlexColumn>
+      </FlexRow>
     </AdminSection>
+    </>
   )
 }
 
-function AdminProject () {
+function AdminProject ({ title, description, liveURL, codeURL, screenshotURL}) {
   return (
     <ProjectContainer width="300px" height="400px">
-      <Image  height="60%" width="100%" />
+      <Image 
+      src={screenshotURL} 
+      height="60%" 
+      width="100%"
+      loading="lazy"
+      />
       <FlexColumn height="40%" width="100%" padding="15px">
         <FlexRow 
           justify="space-between"
           width="100%" 
           height="40px">
-          <h3>Project</h3>
+          <h3>{title}</h3>
           <FlexRow 
             justify="space-between"
             gap="20px">
-            <a target="_blank">
+            <a 
+            target="_blank" 
+            rel="noreferrer" 
+            href={codeURL}>
               <i className="devicon-github-original colored"></i>
             </a>
-            <a target="_blank">
+            <a 
+            target="_blank" 
+            rel="noreferrer" 
+            href={liveURL}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
             </a>
           </FlexRow>
         </FlexRow>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse sint perspiciatis eveniet recusandae assumenda. Harum consequuntur.
+          {description}
         </p>
       </FlexColumn>
       <FlexRow justify="center" width="100%" height="fit-content">
@@ -115,3 +239,12 @@ function AdminProject () {
     </ProjectContainer>
   )
 }
+
+
+AdminProject.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  liveURL: PropTypes.string,
+  codeURL: PropTypes.string,
+  screenshotURL: PropTypes.string,
+};
