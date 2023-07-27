@@ -17,7 +17,7 @@ export const FlexRow = styled(Container)`
 export const FlexColumn = styled(Container)`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: ${({ justify }) => justify || "flex-start"};
   align-items: ${({ align }) => align || "flex-start"};
   padding: ${({ padding }) => padding};
   gap: ${({ gap }) => gap};
@@ -25,8 +25,8 @@ export const FlexColumn = styled(Container)`
 
 export const Grid = styled(Container)`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 400px;
+  grid-template-columns: repeat(auto-fill, minmax(${({columns}) => columns}, 1fr));
+  grid-auto-rows: ${({rows}) => rows};
   grid-gap: 30px;
 
   @media(max-width: ${({ theme }) => theme.tablet}) {

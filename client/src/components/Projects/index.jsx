@@ -1,4 +1,4 @@
-import { ProjectsSection, ProjectContainer } from "../styles/ProjectsSection.Styled";
+import { Section, ProjectContainer } from "../styles/ProjectsSection.Styled";
 import { Image } from "../styles/Image.Styled";
 import {
   FlexRow,
@@ -8,9 +8,13 @@ import {
 
 export default function ProjectsContainer() {
   return (
-    <ProjectsSection>
+    <Section>
       <h2>My Work</h2>
-      <Grid width="100%" height="fit-content">
+      <Grid 
+        width="100%" 
+        height="fit-content"
+        columns="300px"
+        rows="400px">
         <Project />
         <Project />
         <Project />
@@ -18,7 +22,7 @@ export default function ProjectsContainer() {
         <Project />
         <Project />
       </Grid>
-    </ProjectsSection>
+    </Section>
   )
 }
 

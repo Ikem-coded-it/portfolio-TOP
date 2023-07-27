@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { FlexColumn } from "./Container.Styled";
 
-export const ProjectsSection = styled.section`
-  min-height: 500px;
+export const Section = styled.section`
+  min-height: 200px;
   max-height: fit-content;
   box-sizing: border-box;
   padding: 70px 90px;
   font-family: "Playfair Display";
   overflow-x: hidden;
+  background-color: ${({theme}) => theme.colors.lightBg };
 
   & h2 {
     font-family: "Playfair display";
