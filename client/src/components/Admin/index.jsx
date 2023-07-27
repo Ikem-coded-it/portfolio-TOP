@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ProjectContainer } from "../styles/ProjectsSection.Styled";
 import { Image } from "../styles/Image.Styled";
+import SkillForm from "./SkillsForm";
 import styled from "styled-components";
 
 const AdminSection = styled(FlexRow)`
@@ -67,6 +68,9 @@ export default function Admin() {
           <Button type="submit">Upload Project</Button>
         </FlexRow>
       </UploadForm>
+
+      <SkillForm />
+      
       <FlexColumn 
         gap="10px" 
         justify="center"
