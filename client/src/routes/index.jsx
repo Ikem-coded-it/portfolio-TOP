@@ -70,7 +70,7 @@ const Router = () => {
   }
 
   return (
-      projects.length && skills.length &&
+      projects.length >= 0 && skills.length >= 0 &&
       <>
       <Context.Provider value={values}>
         <RouterProvider router={router} />
