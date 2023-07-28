@@ -7,7 +7,7 @@ import { Context } from "../ContextProvider/context.js";
 const Router = () => {
   const [projects, setProjects] = useState([])
   const [skills, setSkills] = useState([])
-  const serverURL = "http://localhost:3001/api/v1"
+  const serverURL = import.meta.env.VITE_SERVER_URL
 
   useEffect(() => {
     async function getProjects() {
