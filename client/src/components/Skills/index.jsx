@@ -4,6 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Context } from "../../ContextProvider/context";
 import { useContext } from "react";
+import { SkillsLoader } from "../Loader";
 
 const SkillContainer = styled(FlexColumn)`
   background-color: #f1f5f9;
@@ -25,6 +26,8 @@ const SkillContainer = styled(FlexColumn)`
 `
 
 const SkillsGrid = styled(Grid)`
+  position: relative;
+
  @media(max-width: ${({theme}) => theme.tablet}) {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -40,12 +43,12 @@ export default function Skills() {
     <Section>
       <h2>My Skills</h2>
       <SkillsGrid
-        width="100%" 
-        height="fit-content"
         columns="100px"
         rows="100px">
         {
-          context.skills.length &&
+          context.skills.length === 0 || context.skills.length === [] ?
+          <SkillsLoader />
+          :
           context.skills.map(skill => {
             return <Skill 
               key={skill._id}

@@ -13,17 +13,28 @@ const LoaderContainer = styled.div`
 
   min-height: fit-content;
   min-width: fit-content;
-  position: fixed;
-  top: 50vh;
-  left: 50vw;
+  margin: 0 auto;
 
   & div {
     width: 40px;
     height: 40px;
     border: 10px solid #f3f3f3;
-    border-top: 10px solid #383636;
+    border-top: 10px solid ${({theme}) => theme.colors.blueBg};
     border-radius: 50%;
     animation: spinner 1.5s linear infinite;
+  }
+`
+
+export const SkillsLoaderContainer = styled(LoaderContainer)`
+  position: absolute;
+  left: 160px;
+
+  @media(max-width: ${({ theme }) => theme.tablet}) {
+    left: 140px;
+  }
+
+  @media(max-width: ${({ theme }) => theme.mobile}) {
+    left: 130px;
   }
 `
 

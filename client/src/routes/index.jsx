@@ -48,6 +48,7 @@ const Router = () => {
 
     getProjects()
     getSkills()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const router = createBrowserRouter([

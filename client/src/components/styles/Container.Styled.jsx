@@ -24,6 +24,9 @@ export const FlexColumn = styled(Container)`
 `
 
 export const Grid = styled(Container)`
+  min-height: 100px;
+  min-width: 100%;
+  max-width: fit-content;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(${({columns}) => columns}, 1fr));
   grid-auto-rows: ${({rows}) => rows};

@@ -8,6 +8,7 @@ import {
 import { Context } from "../../ContextProvider/context";
 import { useContext } from "react";
 import PropTypes from "prop-types";
+import LoaderSpinner from "../Loader";
 
 export default function ProjectsContainer() {
   const context = useContext(Context);
@@ -20,7 +21,9 @@ export default function ProjectsContainer() {
         columns="300px"
         rows="400px">
         {
-          context.projects.length &&
+          context.projects.length == 0 || context.projects.length == [] ?
+          <LoaderSpinner />
+          :
           context.projects.map(project => {
             return <Project 
               key={project._id}
