@@ -21,7 +21,7 @@ export default function ProjectsContainer() {
         columns="300px"
         rows="400px">
         {
-          context.projects.length == 0 || context.projects.length == [] ?
+          context.projects.length === 0 ?
           <LoaderSpinner />
           :
           context.projects.map(project => {

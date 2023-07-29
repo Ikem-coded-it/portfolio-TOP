@@ -46,7 +46,7 @@ export default function Skills() {
         columns="100px"
         rows="100px">
         {
-          context.skills.length === 0 || context.skills.length === [] ?
+          context.skills.length === 0 ?
           <SkillsLoader />
           :
           context.skills.map(skill => {
