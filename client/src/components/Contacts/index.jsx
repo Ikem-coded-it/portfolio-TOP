@@ -108,7 +108,7 @@ export default function Contacts () {
       <Picture >
         <source media="(min-width: 950px)" srcSet={myPic} />
         <source media="(min-width: 500px)" srcSet={myPic2} />
-        <Image src={myPic3} alt="Ikem" width="600px" height="auto"  />
+        <Image src={myPic3} alt="Ikem" width="600px" height="auto" loading="lazy"  />
       </Picture>
     </ContactsContainer>
   )

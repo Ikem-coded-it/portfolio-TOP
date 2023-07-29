@@ -43,7 +43,12 @@ export default function ProjectsContainer() {
 export function Project({ title, description, liveURL, codeURL, screenshotURL}) {
   return (
     <ProjectContainer>
-      <Image height="60%" width="100%" src={screenshotURL}/>
+      <Image 
+      height="60%" 
+      width="100%" 
+      src={screenshotURL} 
+      loading="lazy"
+      />
       <FlexColumn height="40%" width="100%" padding="15px">
         <FlexRow 
           justify="space-between"

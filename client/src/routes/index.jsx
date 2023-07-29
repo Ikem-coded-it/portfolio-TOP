@@ -24,7 +24,11 @@ const Router = () => {
           alert("Failed to get projects, check your network")
         }
       } catch(err) {
-        alert(err.message)
+        if (err.message === "Failed to fetch" || err.message === "failed to fetch") {
+          alert("Please check your internet connection and try again")
+        } else {
+          alert(err.message)
+        }
       }
     }
 
@@ -42,7 +46,11 @@ const Router = () => {
           alert("Failed to get skills, check your network")
         }
       } catch(err) {
-        alert(err.message)
+        if (err.message === "Failed to fetch" || err.message === "failed to fetch") {
+          alert("Please check your internet connection and try again")
+        } else {
+          alert(err.message)
+        }
       }
     }
 
