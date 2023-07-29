@@ -37,7 +37,7 @@ export default function Admin() {
   useEffect(() => {
     function checkPassword() {
       // eslint-disable-next-line no-undef
-      if (params.password === import.meta.env.VITE_ADMIN_PASSWORD) {
+      if (params.password === "IDONTknow2") {
         setAuthorized(true)
         return true
       }

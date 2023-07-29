@@ -7,7 +7,7 @@ import { Context } from "../ContextProvider/context.js";
 const Router = () => {
   const [projects, setProjects] = useState([])
   const [skills, setSkills] = useState([])
-  const serverURL = import.meta.env.VITE_SERVER_URL
+  const serverURL = "https://portfolioapi-ry6g.onrender.com/api/v1";
 
   useEffect(() => {
     async function getProjects() {
