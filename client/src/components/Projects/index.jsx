@@ -21,8 +21,19 @@ export default function ProjectsContainer() {
         columns="300px"
         rows="400px">
         {
-          context.projects.length === 0 ?
-          <LoaderSpinner />
+          context.projects.length === 0 ? (
+            // show default placeholder project and spinner while waiting for API call.
+            <> 
+            <Project 
+            title={"BallerStore"}
+            description={"A store for basketballs made using React.Js and Firebase. Customers are able to sign up, view products, leave ratings and reviews and make payments using Paypal. email: userperson@gmail.com password: secretword"}
+            liveURL={"https://ballerstore-9d13f.web.app/"}
+            codeURL={"https://github.com/Ikem-coded-it/shopping-cart-TOP"}
+            screenshotURL={"https://res.cloudinary.com/dfrrfeiiw/image/upload/v1690584380/portfolio/qv3mybgjwcl1xupuw8ch.png"}
+            />
+            <LoaderSpinner />
+            </>
+          )
           :
           context.projects.map(project => {
             return <Project 
