@@ -7,6 +7,10 @@ const DownloadBtn = styled(Button)`
   width: 100px;
   font-size: 12px;
   z-index: 11111;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  right: 10px;
 `
 
 const DownloadForm = styled.form`
@@ -20,10 +24,12 @@ const DownloadForm = styled.form`
 export default function ResumeDownloadButton() {
   const context = useContext(Context);
 
-  return <DownloadForm action={context.serverURL + '/download-resume'}>
+  return (
+    <DownloadForm action={context.serverURL + '/download-resume'}>
       <DownloadBtn bg="#334155">
         Download Resume
         <i className="fa-solid fa-download"></i>
       </DownloadBtn>
     </DownloadForm>
+  )
 }

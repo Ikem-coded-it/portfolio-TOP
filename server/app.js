@@ -18,6 +18,9 @@ app.use("/api/v1/skills", skillRouter);
 app.use("/api/v1/download-resume", (req, res) => {
   res.download("./public/resume/IkemefunaResume.pdf")
 })
+app.use("/api/v1/start", async(req, res) => {
+  await res.sendStatus(200)
+})
 
 app.use("*", (req, res) => {
   res.status(404).send({

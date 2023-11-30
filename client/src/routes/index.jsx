@@ -3,59 +3,92 @@ import App from "../App";
 import Admin from "../components/Admin";
 import { useState, useEffect } from "react"
 import { Context } from "../ContextProvider/context.js";
+import { getProjects, getSkills } from "../firebase/index.js";
 
 const Router = () => {
   const [projects, setProjects] = useState([])
   const [skills, setSkills] = useState([])
-  const serverURL = "https://portfolioapi-ry6g.onrender.com/api/v1";
+  const serverURL = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
-    async function getProjects() {
+    async function getProjectsFromFirebase() {
       try {
-        const url = `${serverURL}/projects`;
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.data) {
-          setProjects(data.data)
+        const projects = await getProjects()
+        if(projects instanceof Error) {
+          return alert(projects.message)
         }
 
-        if(data instanceof Error) {
-          alert("Failed to get projects, check your network")
+        if (projects.length > 0) {
+          return setProjects(projects)
         }
-      } catch(err) {
-        if (err.message === "Failed to fetch" || err.message === "failed to fetch") {
-          alert("Please check your internet connection and try again")
-        } else {
-          alert(err.message)
-        }
+      } catch (error) {
+        alert(error.message)
       }
     }
 
-    async function getSkills() {
+    // async function getProjectsFromMongodb() {
+    //   try {
+    //     const url = `${serverURL}/projects`;
+    //     const response = await fetch(url);
+    //     const data = await response.json();
+
+    //     if (data.data) {
+    //       setProjects(data.data)
+    //     }
+
+    //     if(data instanceof Error) {
+    //       alert("Failed to get projects, check your network")
+    //     }
+    //   } catch(err) {
+    //     if (err.message === "Failed to fetch" || err.message === "failed to fetch") {
+    //       alert("Please check your internet connection and try again")
+    //     } else {
+    //       alert(err.message)
+    //     }
+    //   }
+    // }
+
+    async function getSkillsFromFirebase() {
       try {
-        const url = `${serverURL}/skills`;
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.data) {
-          setSkills(data.data)
+        const skills = await getSkills()
+        if(skills instanceof Error) {
+          return alert(skills.message)
         }
 
-        if(data instanceof Error) {
-          alert("Failed to get skills, check your network")
+        if (skills.length > 0) {
+          return setSkills(skills)
         }
-      } catch(err) {
-        if (err.message === "Failed to fetch" || err.message === "failed to fetch") {
-          alert("Please check your internet connection and try again")
-        } else {
-          alert(err.message)
-        }
+      } catch (error) {
+        alert(error.message)
       }
     }
 
-    getProjects()
-    getSkills()
+    // async function getSkillsFromMongodb() {
+    //   try {
+    //     const url = `${serverURL}/skills`;
+    //     const response = await fetch(url);
+    //     const data = await response.json();
+
+    //     if (data.data) {
+    //       setSkills(data.data)
+    //     }
+
+    //     if(data instanceof Error) {
+    //       alert("Failed to get skills, check your network")
+    //     }
+    //   } catch(err) {
+    //     if (err.message === "Failed to fetch" || err.message === "failed to fetch") {
+    //       alert("Please check your internet connection and try again")
+    //     } else {
+    //       alert(err.message)
+    //     }
+    //   }
+    // }
+
+    // getProjectsFromMongodb()
+    // getSkillsFromMongodb()
+    getProjectsFromFirebase()
+    getSkillsFromFirebase()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

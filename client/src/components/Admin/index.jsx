@@ -9,6 +9,7 @@ import SkillForm from "./SkillsForm";
 import { Skill } from "../Skills";
 import { Context } from "../../ContextProvider/context";
 import { useContext } from "react";
+import { postProject, postSkill, deleteProject } from "../../firebase/index";
 import LoaderSpinner from "../Loader";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
@@ -47,9 +48,10 @@ export default function Admin() {
    
   }, [params])
 
-  const handleProjectUpload = async(e) => {
+  const handleFirebaseProjectUpload = async(e) => {
     e.preventDefault();
-    try {
+
+    try{
       setUploading(true)
 
       const title = e.target.title.value
@@ -58,42 +60,79 @@ export default function Admin() {
       const codeURL = e.target.code_url.value
       const screenshot = e.target.screenshot.files[0]
 
-      const formData = new FormData();
-      formData.append('title', title);
-      formData.append('description', description);
-      formData.append('liveURL', liveURL);
-      formData.append('codeURL', codeURL);
-      formData.append('screenshot', screenshot);
-
-      const url = `${context.serverURL}/projects/create`;
-  
-      const response = await fetch(url, {
-        method: 'POST',
-        body: formData,
-      })
-      const data = await response.json();
-      if (data.data) {
-        setUploading(false)
-        context.setProjects([data.data, ...context.projects])
+      const projectData = {
+        title, description, liveURL, codeURL
       }
 
-      if (data instanceof Error) {
-        alert(data.message)
+      const project = {data: projectData, screenshot}
+
+      const uploaded = await postProject(project);
+      if (uploaded instanceof Error) {
+        return alert(uploaded.message)
+      }
+
+      if (uploaded.success) {
         setUploading(false)
+        context.setProjects([uploaded.newProject, ...context.projects])
       }
 
       e.target.title.value = '';
       e.target.description.value = '';
       e.target.live_url.value = '';
       e.target.code_url.value = '';
-    } catch(err) {
-      alert(err.message)
-      setUploading(false)
+    }catch(e) {
+      alert(e.message)
     }
   }
 
-  const handleSkillUpload = async(e) => {
+  // const handleMongodbProjectUpload = async(e) => {
+  //   e.preventDefault();
+  //   try {
+  //     setUploading(true)
+
+  //     const title = e.target.title.value
+  //     const description = e.target.description.value
+  //     const liveURL = e.target.live_url.value
+  //     const codeURL = e.target.code_url.value
+  //     const screenshot = e.target.screenshot.files[0]
+
+  //     const formData = new FormData();
+  //     formData.append('title', title);
+  //     formData.append('description', description);
+  //     formData.append('liveURL', liveURL);
+  //     formData.append('codeURL', codeURL);
+  //     formData.append('screenshot', screenshot);
+
+  //     const url = `${context.serverURL}/projects/create`;
+  
+  //     const response = await fetch(url, {
+  //       method: 'POST',
+  //       body: formData,
+  //     })
+  //     const data = await response.json();
+  //     if (data.data) {
+  //       setUploading(false)
+  //       context.setProjects([data.data, ...context.projects])
+  //     }
+
+  //     if (data instanceof Error) {
+  //       alert(data.message)
+  //       setUploading(false)
+  //     }
+
+  //     e.target.title.value = '';
+  //     e.target.description.value = '';
+  //     e.target.live_url.value = '';
+  //     e.target.code_url.value = '';
+  //   } catch(err) {
+  //     alert(err.message)
+  //     setUploading(false)
+  //   }
+  // }
+
+  const handleFirebaseSkillUpload = async(e) => {
     e.preventDefault();
+
     try {
       setUploading(true)
 
@@ -101,35 +140,65 @@ export default function Admin() {
         name: e.target.name.value,
         iconClassName: e.target.icon_class_name.value
       }
-      
-      const url = `${context.serverURL}/skills/create`
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(newSkill),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      const data = await response.json()
 
-      
-      if(data.success === false) {
-        alert(data.message)
-        setUploading(false)
+      const uploaded = await postSkill(newSkill);
+
+      if (uploaded instanceof Error) {
+        alert(uploaded.message)
+        return setUploading(false)
       }
 
-      if (data.success === true) {
-        context.setSkills([...context.skills, data.data])
+      if (uploaded == "Skill Posted") {
+        context.setSkills([...context.skills, newSkill])
         setUploading(false)
       }
 
       e.target.name.value = '';
       e.target.icon_class_name.value = '';
-    } catch(err) {
-      alert(err.message)
+    } catch (error) {
+      alert(error.message)
       setUploading(false)
     }
   }
+
+  // const handleSkillUpload = async(e) => {
+  //   e.preventDefault();
+  //   try {
+  //     setUploading(true)
+
+  //     const newSkill = {
+  //       name: e.target.name.value,
+  //       iconClassName: e.target.icon_class_name.value
+  //     }
+      
+  //     const url = `${context.serverURL}/skills/create`
+  //     const response = await fetch(url, {
+  //       method: 'POST',
+  //       body: JSON.stringify(newSkill),
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     })
+  //     const data = await response.json()
+
+      
+  //     if(data.success === false) {
+  //       alert(data.message)
+  //       setUploading(false)
+  //     }
+
+  //     if (data.success === true) {
+  //       context.setSkills([...context.skills, data.data])
+  //       setUploading(false)
+  //     }
+
+  //     e.target.name.value = '';
+  //     e.target.icon_class_name.value = '';
+  //   } catch(err) {
+  //     alert(err.message)
+  //     setUploading(false)
+  //   }
+  // }
 
   if(authorized === false) return <h1>You cannot go here bro</h1>
 
@@ -146,8 +215,8 @@ export default function Admin() {
       >
       
       <FlexRow>
-        <ProjectForm onSubmit={handleProjectUpload} />
-        <SkillForm onSubmit={handleSkillUpload} />
+        <ProjectForm onSubmit={handleFirebaseProjectUpload} />
+        <SkillForm onSubmit={handleFirebaseSkillUpload} />
       </FlexRow>
       
       <FlexRow 
@@ -164,7 +233,7 @@ export default function Admin() {
             context.skills.map((skill) => {
               return <Skill
                 width="100px"
-                key={skill._id}
+                key={skill.id}
                 name={skill.name}
                 iconClassName={skill.iconClassName}
               />
@@ -181,8 +250,8 @@ export default function Admin() {
             context.projects.length &&
             context.projects.map((project) => {
               return <AdminProject 
-                key={project._id}
-                id={project._id}
+                key={project.id}
+                id={project.id}
                 title={project.title}
                 description={project.description}
                 liveURL={project.liveURL}
@@ -201,22 +270,40 @@ export default function Admin() {
 function AdminProject ({ id, title, description, liveURL, codeURL, screenshotURL}) {
   const context = useContext(Context)
 
-  const handleDelete = async() => {
-    try {
-      const url = `${context.serverURL}/projects/delete/${id}`;
-      const response = await fetch(url, {method: 'DELETE'});
-      const data = await response.json();
+  // const handleDelete = async() => {
+  //   try {
+  //     const url = `${context.serverURL}/projects/delete/${id}`;
+  //     const response = await fetch(url, {method: 'DELETE'});
+  //     const data = await response.json();
 
-      if(data.success === true) {
+  //     if(data.success === true) {
+  //       context.setProjects(prev => {
+  //         return prev.filter(project => project._id !== id)
+  //       })
+  //       alert(data.message)
+  //     } else {
+  //       alert(data.message)
+  //     }
+  //   } catch (err) {
+  //     alert(err.message)
+  //   }
+  // }
+
+  const handleDeleteFromFirebase = async() => {
+    try {
+      const deleted = await deleteProject(id)
+      console.log(deleted)
+      if (deleted === "Project Deleted") {
+        console.log("here")
         context.setProjects(prev => {
           return prev.filter(project => project._id !== id)
         })
-        alert(data.message)
+        alert("Project Deleted")
       } else {
-        alert(data.message)
+        alert(deleted.message)
       }
-    } catch (err) {
-      alert(err.message)
+    } catch (error) {
+      alert(error.message)
     }
   }
 
@@ -258,7 +345,7 @@ function AdminProject ({ id, title, description, liveURL, codeURL, screenshotURL
       <FlexRow justify="center" width="100%" height="fit-content">
         <Button 
         type="button"
-        onClick={handleDelete}>
+        onClick={handleDeleteFromFirebase}>
           Delete
         </Button>
       </FlexRow>

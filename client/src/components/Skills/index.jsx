@@ -47,27 +47,12 @@ export default function Skills() {
         rows="100px">
         {
           context.skills.length === 0 ? (
-            // show default placeholder skills and spinner while waiting for API call.
-            <>
-            <Skill 
-            name={"React.Js"}
-            iconClassName={"devicon-react-original colored"}
-            />
-            <Skill 
-            name={"Node.Js"}
-            iconClassName={"devicon-nodejs-plain colored"}
-            />
-            <Skill 
-            name={"MongoDB"}
-            iconClassName={"devicon-mongodb-plain colored"}
-            />
             <SkillsLoader />
-            </>
           )
           :
           context.skills.map(skill => {
             return <Skill 
-              key={skill._id}
+              key={skill.id}
               name={skill.name}
               iconClassName={skill.iconClassName}
             />
