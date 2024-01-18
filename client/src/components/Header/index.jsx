@@ -18,7 +18,7 @@ export default function Header() {
           </p>
           <div className="link-icons-container">
             <a rel="noreferrer" target="_blank" href="https://github.com/ikem-coded-it">
-              <i className="devicon-github-original colored"></i>
+              <i className="devicon-github-original"></i>
             </a>
             <a rel="noreferrer" target="_blank" href="https://twitter.com/IkemO06934594">
               <i className="devicon-twitter-original colored"></i>

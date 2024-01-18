@@ -8,10 +8,11 @@
   padding: 0 90px;
   overflow: hidden;
   position: relative;
+  background-color: var(--dark-bg);
 }
 
 .background {
-  background-color: var(--bg-color);
+  background-color: #3d0341;
   min-width: 1600px;
   height: 800px;
   transform: rotate(-10deg) translateY(-40%) translateX(-5%);
@@ -67,7 +68,7 @@
 .about {
   height: 87%;
   width: 70%;
-  background-color: #fff;
+  background-color: var(--dark-bg);
   padding: 20px;
   box-sizing: border-box;
   box-shadow: 1px 1px 10px #64748b;
@@ -84,7 +85,8 @@
 .about p {
   font-size: 22px;
   font-family: Roboto;
-  color: var(--font-dark-dark);
+  color: var(--font-light-dark);
+  text-align: center;
 }
 
 .about div {
@@ -96,6 +98,10 @@
 
 .about div a {
   text-decoration: none;
+}
+
+.devicon-github-original {
+  color: white;
 }
 
 

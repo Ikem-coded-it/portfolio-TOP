@@ -9,6 +9,7 @@ import { SkillsLoader } from "../Loader";
 const SkillContainer = styled(FlexColumn)`
   background-color: #f1f5f9;
   border-radius: 5px;
+  color: ${({theme}) => theme.colors.darkFont};
 
   & svg {
     height: 50px;

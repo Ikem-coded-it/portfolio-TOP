@@ -2,13 +2,15 @@ import styled from "styled-components";
 import { FlexColumn } from "./Container.Styled";
 
 export const Section = styled.section`
-  min-height: 200px;
-  max-height: fit-content;
+  // min-height: 200px;
+  height: fit-content;
+  // max-height: fit-content;
   box-sizing: border-box;
   padding: 70px 90px;
   font-family: "Playfair Display";
   overflow-x: hidden;
-  background-color: ${({theme}) => theme.colors.lightBg };
+  overflow-y: visible;
+  background-color: ${({theme}) => theme.colors.darkBg };
 
   & h2 {
     font-family: "Playfair display";
@@ -17,6 +19,8 @@ export const Section = styled.section`
 
   & h3 {
     font-family: Roboto;
+    font-size: 25px;
+    font-weight: 700;
   }
 
   & a {
@@ -26,14 +30,16 @@ export const Section = styled.section`
   & svg {
     height: 30px;
     width: 30px;
+    fill: white;
   }
 
   & i {
     font-size: 30px;
+    color: white;
   }
 
   & p {
-    font-size: 13px;
+    font-size: 18px;
     font-family: Roboto;
   }
 
@@ -48,11 +54,19 @@ export const Section = styled.section`
     & h2 {
       text-align: center;
     }
+
+    & h3 {
+      font-size: 20px;
+    }
+
+    & p {
+      font-size: 15px;
+    }
   }
 `
 
 export const ProjectContainer = styled(FlexColumn)`
-  box-shadow: 1px 1px 10px #64748b;
+  box-shadow: 1px 1px 20px #a21caf;
   transition: transform .3s ease;
 
   &:hover {

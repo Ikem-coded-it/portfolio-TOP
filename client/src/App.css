@@ -9,9 +9,10 @@
 }
 
 :root {
-  --font-light-dark: #cbd5e1;
+  --font-light-dark: #fdf4ff;
   --font-dark-dark: #374151;
-  --bg-color: #0891b2;
+  --bg-color: #4a044e;
+  --dark-bg: #020617;
 }
 
 body {
@@ -24,6 +25,8 @@ body {
   box-sizing: border-box;
   overflow-x: hidden;
   scrollbar-gutter: stable;
+  color: var(--font-light-dark);
+  background-color: var(--dark-bg);
 }
 
 #root {

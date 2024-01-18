@@ -16,10 +16,11 @@ export default function ProjectsContainer() {
     <Section>
       <h2>My Work</h2>
       <Grid 
-        width="100%" 
-        height="fit-content"
-        columns="300px"
-        rows="400px">
+        width="100%"
+        columns="400px"
+        rows="500px"
+        mRows="400px"
+        rowGap="100px">
         {
           context.projects.length === 0 ? (
             <LoaderSpinner />
@@ -60,7 +61,7 @@ export function Project({ title, description, liveURL, codeURL, screenshotURL}) 
             justify="space-between"
             gap="20px">
             <a target="_blank"rel="noreferrer" href={codeURL}>
-              <i className="devicon-github-original colored"></i>
+              <i className="devicon-github-original"></i>
             </a>
             <a target="_blank" href={liveURL} rel="noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>

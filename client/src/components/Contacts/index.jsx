@@ -7,7 +7,7 @@ import myPic2 from "../../assets/images/IMG_20230305_080744_514~3.jpg"
 import myPic3 from "../../assets/images/IMG_20230305_080744_514~4.jpg"
 
 const ContactsContainer = styled(FlexRow)`
-  background-color: var(--bg-color);
+  background-color: #4a044e;
   color: white;
   font-family: Roboto;
 
@@ -17,6 +17,10 @@ const ContactsContainer = styled(FlexRow)`
 
   & p {
     width: 60%;
+  }
+
+  & .devicon-github-original {
+    color: white;
   }
 
   @media(max-width: ${({ theme }) => theme.tablet}) {
@@ -95,13 +99,13 @@ export default function Contacts () {
           gap="20px"
           justify="flex-start">
           <a rel="noreferrer" target="_blank" href="https://github.com/ikem-coded-it">
-            <i className="devicon-github-original colored"></i>
+            <i className="devicon-github-original"></i>
           </a>
           <a rel="noreferrer" target="_blank" href="https://twitter.com/IkemO06934594">
-            <i className="devicon-twitter-original"></i>
+            <i className="devicon-twitter-original colored"></i>
           </a>
           <a rel="noreferrer" target="_blank" href="https://www.linkedin.com/in/ikemefuna-onubogu-84914323a">
-            <i className="devicon-linkedin-plain"></i>
+            <i className="devicon-linkedin-plain colored"></i>
           </a>
         </IconContainer>
       </FlexColumn>
