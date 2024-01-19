@@ -67,7 +67,8 @@ export const Section = styled.section`
 
 export const ProjectContainer = styled(FlexColumn)`
   box-shadow: 1px 1px 20px #a21caf;
-  transition: transform .3s ease;
+  transition: transform .3s ease-in-out;
+  transform: scaleX(0);
 
   &:hover {
     transform: scale(0.98);

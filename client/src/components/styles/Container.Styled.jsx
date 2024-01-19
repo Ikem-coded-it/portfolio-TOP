@@ -33,6 +33,10 @@ export const Grid = styled(Container)`
   row-gap: ${({rowGap}) => rowGap || "30px"};
   column-gap: ${({columnGap}) => columnGap || "30px"};
 
+  & .active {
+    transform: scaleX(1);
+  }
+
   @media(max-width: ${({ theme }) => theme.tablet}) {
     grid-template-columns: repeat(2, 1fr);
   }

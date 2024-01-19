@@ -6,7 +6,7 @@ import {
   Grid 
 } from "../styles/Container.Styled";
 import { Context } from "../../ContextProvider/context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import LoaderSpinner from "../Loader";
 
@@ -43,8 +43,30 @@ export default function ProjectsContainer() {
 }
 
 export function Project({ title, description, liveURL, codeURL, screenshotURL}) {
+  useEffect(() => {
+    const revealOnScroll = () => {
+      const reveals = document.querySelectorAll('.reveal')
+
+      reveals.forEach(reveal => {
+        const windowHeight = window.innerHeight;
+        const revealTop = reveal.getBoundingClientRect().top;
+        const revealPoint = 200;
+
+        if(revealTop < windowHeight - revealPoint)
+          reveal.classList.add('active')
+        else
+          reveal.classList.remove('active')
+        
+      })
+    }
+
+    window.addEventListener('scroll', () => revealOnScroll());
+
+    return window.removeEventListener('scroll', revealOnScroll)
+  }, [])
+
   return (
-    <ProjectContainer>
+    <ProjectContainer className="reveal">
       <Image 
       height="60%" 
       width="100%" 
