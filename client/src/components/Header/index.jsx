@@ -14,7 +14,7 @@ export default function Header() {
           <h1>About Me</h1>
           <ResumeDownloadButton />
           <p>
-            Yo what's up!, I'm a software engineer that loves to code in javascript. Having skills in both frontend and backend web development, my true passiom lies in developing full stack web applications that makes life easier for its users.
+            Yo what's up!, I'm a software engineer that loves to code in javascript. Having skills in both frontend and backend web development, my true passion lies in developing full stack web applications that make life easier for its users.
           </p>
           <div className="link-icons-container">
             <a rel="noreferrer" target="_blank" href="https://github.com/ikem-coded-it">
