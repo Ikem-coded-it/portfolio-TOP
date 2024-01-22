@@ -14,7 +14,7 @@ export default function Header() {
           <h1>About Me</h1>
           <ResumeDownloadButton />
           <p>
-            I am a passionate software developer with a love for crafting innovative projects using JavaScript. Embracing a constant quest for knowledge and growth, I find joy in exploring new concepts. Beyond coding, I indulge in reading captivating books, enjoying anime, and diving into YouTube's fascinating content in my leisure time.
+            Yo what's up!, I'm a software engineer that loves to code in javascript. Having skills in both frontend and backend web development, my true passiom lies in developing full stack web applications that makes life easier for its users.
           </p>
           <div className="link-icons-container">
             <a rel="noreferrer" target="_blank" href="https://github.com/ikem-coded-it">
