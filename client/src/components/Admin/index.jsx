@@ -38,7 +38,7 @@ export default function Admin() {
   useEffect(() => {
     function checkPassword() {
       // eslint-disable-next-line no-undef
-      if (params.password === "IDONTknow2") {
+      if (params.password === "idontknow") {
         setAuthorized(true)
         return true
       }
