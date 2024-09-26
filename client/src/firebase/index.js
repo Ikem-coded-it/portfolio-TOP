@@ -17,7 +17,9 @@ export const postProject = async(project) => {
 
 export const getProjects = async() => {
   try{
-    const querySnapshot = await getDocs(collection(firestore, "projects"));
+    const querySnapshot = await getDocs(collection(firestore, "projects"), {
+      orderBy: ["createdAt", "desc"]
+    });
 
     const result = []
     querySnapshot.forEach((doc) => {
