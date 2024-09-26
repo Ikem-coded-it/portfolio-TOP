@@ -1,5 +1,5 @@
 import { storage, firestore } from "./config";
-import { setDoc, getDocs, collection, deleteDoc, doc } from "firebase/firestore";
+import { setDoc, getDocs, collection, deleteDoc, doc, query, orderBy } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { v4 as uuid } from "uuid";
 
