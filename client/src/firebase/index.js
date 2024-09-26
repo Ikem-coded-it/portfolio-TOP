@@ -7,6 +7,8 @@ export const postProject = async(project) => {
   try {
     const projectId = uuid();
     project.data.screenshotURL = await uploadProjectScreenshot(projectId, project.screenshot)
+    project.data.createdAt = new Date()
+    project.data.updatedAt = new Date()
     await setDoc(doc(firestore, "projects", projectId), project.data);
 
     return {success: true, newProject: project.data};
@@ -17,9 +19,9 @@ export const postProject = async(project) => {
 
 export const getProjects = async() => {
   try{
-    const querySnapshot = await getDocs(collection(firestore, "projects"), {
-      orderBy: ["createdAt", "desc"]
-    });
+    const projectsRef = collection(firestore, "projects");
+    const q = query(projectsRef, orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
 
     const result = []
     querySnapshot.forEach((doc) => {
