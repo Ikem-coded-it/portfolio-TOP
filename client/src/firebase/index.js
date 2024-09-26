@@ -1,5 +1,5 @@
 import { storage, firestore } from "./config";
-import { setDoc, getDocs, collection, deleteDoc, doc, query, orderBy } from "firebase/firestore";
+import { setDoc, getDocs, collection, deleteDoc, doc, query, orderBy, Timestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { v4 as uuid } from "uuid";
 
@@ -7,8 +7,8 @@ export const postProject = async(project) => {
   try {
     const projectId = uuid();
     project.data.screenshotURL = await uploadProjectScreenshot(projectId, project.screenshot)
-    project.data.createdAt = new Date()
-    project.data.updatedAt = new Date()
+    project.data.createdAt = Timestamp.now()
+    project.data.updatedAt = Timestamp.now()
     await setDoc(doc(firestore, "projects", projectId), project.data);
 
     return {success: true, newProject: project.data};
