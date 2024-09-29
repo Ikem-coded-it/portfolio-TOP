@@ -16,7 +16,7 @@ app.use(express.static("public"));
 app.use("/api/v1/projects", projectRouter);
 app.use("/api/v1/skills", skillRouter);
 app.use("/api/v1/download-resume", (req, res) => {
-  res.download("./public/resume/IkemefunaResume.pdf")
+  res.download("./public/resume/Ikemefuna-Onubogu-CV.pdf")
 })
 app.use("/api/v1/start", async(req, res) => {
   await res.sendStatus(200)
