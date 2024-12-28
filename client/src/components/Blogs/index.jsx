@@ -49,7 +49,7 @@ function BlogCard({title, link, src, mins}) {
             />
 
             <FlexColumn>
-                <a className="blog-title" href={link}>
+                <a className="blog-title" href={link} target="_blank">
                     {title}
                 </a>
                 <p className="blog-time">{mins} mins read.</p>
