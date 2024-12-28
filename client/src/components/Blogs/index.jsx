@@ -7,7 +7,8 @@ const blogs = [
     {
         link: "https://dev.to/ikemcodedit/handling-auth-in-react-apps-using-nanostores-and-context-api-35kg",
         title: "Handling Auth In React Apps Using Nanostores and Context API",
-        src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fkqr9jcb63izz2m89h6ns.jpg"
+        src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fkqr9jcb63izz2m89h6ns.jpg",
+        mins: 10
     }
 ]
 
@@ -35,7 +36,7 @@ export default function BlogSection() {
     )
 }
 
-function BlogCard({title, link, src}) {
+function BlogCard({title, link, src, mins}) {
     return(
         <FlexRow
         gap="10px"
@@ -51,7 +52,7 @@ function BlogCard({title, link, src}) {
                 <a className="blog-title" href={link}>
                     {title}
                 </a>
-                <p className="blog-time">5 mins read.</p>
+                <p className="blog-time">{mins} mins read.</p>
             </FlexColumn>
         </FlexRow>
     )

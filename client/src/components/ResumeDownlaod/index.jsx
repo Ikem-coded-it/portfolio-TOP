@@ -19,6 +19,7 @@ const DownloadForm = styled.form`
   right: 10px;
   width: fit-content;
   height: fit-content;
+  z-index: 111111111111;
 `
 
 export default function ResumeDownloadButton() {

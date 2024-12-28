@@ -66,10 +66,6 @@ export const Section = styled.section`
     & h3 {
       font-size: 20px;
     }
-
-    & p {
-      font-size: 15px;
-    }
   }
 `
 

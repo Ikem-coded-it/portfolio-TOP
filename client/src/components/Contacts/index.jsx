@@ -9,32 +9,10 @@ const ContactsContainer = styled(FlexRow)`
   color: white;
   font-family: "Poppins";
 
-  & h1 {
-    height: fit-content;
-  }
-
-  & p {
-    width: 60%;
-  }
-
   @media(max-width: ${({ theme }) => theme.mobile}) {
     flex-direction: column;
     padding: 50px 20px;
     gap: 20px;
-
-    & h1 {
-      width: 100%;
-      text-align: center;
-    }
-
-    & p {
-      width: 100%;
-      font-size: 22px;
-    }
-
-    & img {
-      width: 300px;
-    }
   }
 `
 
