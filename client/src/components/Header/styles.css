@@ -73,7 +73,6 @@
 
 @media (max-width: 1054px) {
   .header {
-    min-height: 80vh;
     padding: 0 50px;
     padding-top: 50px;
     gap: 10px;
@@ -120,7 +119,8 @@
     padding: 0;
     padding-top: 100px;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
+    min-height: fit-content;
   }
 
   .profile-pic {
