@@ -113,7 +113,7 @@ export function Project({ title, description, liveURL, codeURL, screenshotURL}) 
             </a>
           </FlexRow>
         </FlexRow>
-        <p>
+        <p className="project-description">
           {description}
         </p>
       </FlexColumn>
