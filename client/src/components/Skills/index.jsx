@@ -33,6 +33,12 @@ const SkillsGrid = styled(FlexRow)`
   position: relative;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
+
+  @media (max-width: 680px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 export default function Skills() {
