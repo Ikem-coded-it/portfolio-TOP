@@ -2,6 +2,7 @@ import GlobalStyles from './components/styles/Global'
 import Header from './components/Header/index'
 import Skills from './components/Skills'
 import ProjectsContainer from './components/Projects'
+import BlogSection from './components/Blogs'
 import Contacts from './components/Contacts'
 import { useContext, useEffect } from 'react';
 import { Context } from './ContextProvider/context'
@@ -21,6 +22,7 @@ function App() {
       <Header />
       <Skills />
       <ProjectsContainer />
+      <BlogSection/>
       <Contacts />
      </>
   )

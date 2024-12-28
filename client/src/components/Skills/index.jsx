@@ -1,4 +1,4 @@
-import { FlexColumn, Grid } from "../styles/Container.Styled";
+import { FlexColumn, Grid, FlexRow } from "../styles/Container.Styled";
 import { Section } from "../styles/ProjectsSection.Styled";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -6,43 +6,45 @@ import { Context } from "../../ContextProvider/context";
 import { useContext } from "react";
 import { SkillsLoader } from "../Loader";
 
-const SkillContainer = styled(FlexColumn)`
+const SkillContainer = styled(FlexRow)`
   background-color: #f1f5f9;
-  border-radius: 5px;
+  height: fit-content;
+  padding: 5px 10px;
+  border-radius: 20px;
   color: ${({theme}) => theme.colors.darkFont};
 
   & svg {
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
   }
 
   & i {
-    font-size: 50px;
+    font-size: 30px;
   }
 
   & div {
-    font-family: Roboto;
+    font-family: "Poppins";
     font-size: 12px;
+    font-weight: 600;
   }
 `
 
-const SkillsGrid = styled(Grid)`
+const SkillsGrid = styled(FlexRow)`
   position: relative;
-
- @media(max-width: ${({theme}) => theme.tablet}) {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  @media(max-width: ${({theme}) => theme.mobile}) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  flex-wrap: wrap;
+  gap: 10px;
 `
 
 export default function Skills() {
   const context = useContext(Context)
   return (
     <Section>
-      <h2>My Skills</h2>
+      <div className="title-description-container">
+        <h2>My Skills</h2>
+        <p>
+          Technologies I have worked with throughout my years of experience in building software.
+        </p>
+      </div>
       <SkillsGrid
         columns="100px"
         rows="100px">

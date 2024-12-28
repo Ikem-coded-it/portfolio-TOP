@@ -6,15 +6,25 @@ import {
   Grid 
 } from "../styles/Container.Styled";
 import { Context } from "../../ContextProvider/context";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import LoaderSpinner from "../Loader";
+import { Button } from "../styles/Button.Styled";
+import "./styles.css"
 
 export default function ProjectsContainer() {
-  const context = useContext(Context);
+  const {projects} = useContext(Context);
+  const [showAll, setShowAll] = useState(false)
+
+  const projectsShown = showAll ? projects : projects?.slice(0, 2)
   return (
     <Section>
-      <h2>My Work</h2>
+      <div className="title-description-container">
+        <h2>Projects/Experience</h2>
+        <p>
+          Various projects I have built alone or contributed to using my skill set mentioned.
+        </p>
+      </div>
       <Grid 
         width="100%"
         columns="400px"
@@ -22,11 +32,11 @@ export default function ProjectsContainer() {
         mRows="400px"
         rowGap="100px">
         {
-          context.projects.length === 0 ? (
+          projects.length === 0 ? (
             <LoaderSpinner />
           )
           :
-          context.projects.map(project => {
+          projectsShown.map(project => {
             return <Project 
               key={project.id}
               title={project.title}
@@ -38,12 +48,25 @@ export default function ProjectsContainer() {
           })
         }
       </Grid>
+
+      {
+        showAll == false && (
+          <div className="margin">
+            <Button onClick={() => setShowAll(prev => !prev)}>
+              View All
+            </Button>
+          </div>
+        )
+      }
+
     </Section>
   )
 }
 
 export function Project({ title, description, liveURL, codeURL, screenshotURL}) {
+  
   useEffect(() => {
+    // open project animation
     const revealOnScroll = () => {
       const reveals = document.querySelectorAll('.reveal')
 

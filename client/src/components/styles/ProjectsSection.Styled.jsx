@@ -2,19 +2,32 @@ import styled from "styled-components";
 import { FlexColumn } from "./Container.Styled";
 
 export const Section = styled.section`
-  // min-height: 200px;
   height: fit-content;
-  // max-height: fit-content;
   box-sizing: border-box;
   padding: 70px 90px;
-  font-family: "Playfair Display";
+  font-family: "Poppins";
   overflow-x: hidden;
   overflow-y: visible;
-  background-color: ${({theme}) => theme.colors.darkBg };
+  background-color: ${({theme, bg}) => bg || theme.colors.darkBg };
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  & .title-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & p {
+      text-align: center;
+    }
+  }
 
   & h2 {
-    font-family: "Playfair display";
+    font-family: "Poppins";
     font-size: 30px;
+    line-height: 0;
   }
 
   & h3 {
@@ -36,11 +49,6 @@ export const Section = styled.section`
   & i {
     font-size: 30px;
     color: white;
-  }
-
-  & p {
-    font-size: 18px;
-    font-family: Roboto;
   }
 
   @media(max-width: ${({ theme }) => theme.tablet}) {
@@ -66,9 +74,10 @@ export const Section = styled.section`
 `
 
 export const ProjectContainer = styled(FlexColumn)`
-  box-shadow: 1px 1px 20px #a21caf;
+  box-shadow: 1px 1px 20px var(--theme-color);
   transition: transform .3s ease-in-out;
   transform: scaleX(0);
+  border-radius: 20px;
 
   &:hover {
     transform: scale(0.98);

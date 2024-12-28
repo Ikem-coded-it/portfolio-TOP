@@ -6,7 +6,7 @@ import { useContext } from "react";
 const DownloadBtn = styled(Button)`
   width: 100px;
   font-size: 12px;
-  z-index: 11111;
+  z-index: 111111111111;
   cursor: pointer;
   position: fixed;
   top: 10px;

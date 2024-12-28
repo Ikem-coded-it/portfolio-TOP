@@ -2,15 +2,16 @@ import styled from "styled-components";
 
 export const Button = styled.button`
   height: 40px;
-  width: 150px;
-  background-color: ${({bg}) => bg || "var(--bg-color)"};
-  transition: transform .4s ease;
+  width: 130px;
+  background-color: ${({bg}) => bg || "var(--theme-color)"};
+  transition: all .4s ease;
   border: none;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   border-radius: 10px;
 
   &:hover {
-    transform: scale(1.04);
+    opacity: 0.8;
+    cursor: pointer;
   }
 `

@@ -1,0 +1,28 @@
+
+.blog-card {
+    display: flex;
+    gap: 10px
+}
+
+.blog-title {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.blog-time {
+    font-size: 10px;
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+@media (max-width: 1054px) {
+    .blog-title {
+        font-size: 16px;
+    }
+    
+    .blog-time {
+        font-size: 10px;
+    }
+}
