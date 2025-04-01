@@ -90,33 +90,39 @@ export function Project({ title, description, liveURL, codeURL, screenshotURL}) 
 
   return (
     <ProjectContainer className="reveal">
-      <Image 
-      height="60%" 
-      width="100%" 
-      src={screenshotURL} 
-      loading="lazy"
-      />
-      <FlexColumn height="40%" width="100%" padding="15px">
-        <FlexRow 
-          justify="space-between"
-          width="100%" 
-          height="40px">
-          <h3>{title}</h3>
+      <a
+      className="project-link"
+      target="_blank"
+      href={liveURL}
+      rel="noreferrer">
+        <Image 
+        height="60%" 
+        width="100%" 
+        src={screenshotURL} 
+        loading="lazy"
+        />
+        <FlexColumn height="40%" width="100%" padding="15px">
           <FlexRow 
             justify="space-between"
-            gap="20px">
-            <a target="_blank"rel="noreferrer" href={codeURL}>
-              <i className="devicon-github-original"></i>
-            </a>
-            <a target="_blank" href={liveURL} rel="noreferrer">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
-            </a>
+            width="100%" 
+            height="40px">
+              <h3 className="project-title">{title}</h3>
+            <FlexRow 
+              justify="space-between"
+              gap="20px">
+              <a target="_blank"rel="noreferrer" href={codeURL}>
+                <i className="devicon-github-original"></i>
+              </a>
+              <a target="_blank" href={liveURL} rel="noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
+              </a>
+            </FlexRow>
           </FlexRow>
-        </FlexRow>
-        <p className="project-description">
-          {description}
-        </p>
-      </FlexColumn>
+          <p className="project-description">
+            {description}
+          </p>
+        </FlexColumn>
+      </a>
     </ProjectContainer>
   )
 }

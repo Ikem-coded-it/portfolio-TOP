@@ -4,4 +4,11 @@
 
 .project-description {
     font-size: 14px;
+    color: "white";
+    text-decoration: none;
+}
+
+.project-link {
+    color: white;
+    text-decoration: none;
 }
