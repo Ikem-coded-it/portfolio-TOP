@@ -16,6 +16,12 @@ const blogs = [
         src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fdr99rgs6tqngqrhwx763.png",
         mins: 10
     },
+    {
+        link: "https://dev.to/ikemcodedit/upskilling-in-tech-the-1-hour-rule-5099",
+        title: "Upskilling In Tech (The 1 Hour Rule)",
+        src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fqahw62sphrkomn10kuij.png",
+        mins: 5
+    },
 ]
 
 export default function BlogSection() {
