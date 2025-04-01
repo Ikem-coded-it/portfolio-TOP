@@ -9,7 +9,13 @@ const blogs = [
         title: "Handling Auth In React Apps Using Nanostores and Context API",
         src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fkqr9jcb63izz2m89h6ns.jpg",
         mins: 10
-    }
+    },
+    {
+        link: "https://dev.to/ikemcodedit/my-software-development-process-2i64",
+        title: "My Software Development Process",
+        src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fdr99rgs6tqngqrhwx763.png",
+        mins: 10
+    },
 ]
 
 export default function BlogSection() {
